@@ -1,0 +1,41 @@
+<div id="main-container">
+  <div id="top">
+    <div id="header">
+      <img src="assets/header_img.jpeg" alt="">
+      <div style="font-size: 40px;">ההגרלה הגדולה</div>
+    </div>
+
+    <div id="add-name-form">
+      <div id="input-container">
+        <mat-form-field>
+          <mat-label>הקלד שם משתתף</mat-label>
+          <input #nameInput matInput (keyup.enter)="addName(nameInput)"/>
+        </mat-form-field>
+        <button (click)="addName(nameInput)" mat-stroked-button style="margin-right: 10px" color="primary">הכנס לרשימה
+        </button>
+      </div>
+      <div id="error-message">{{errMsg}}</div>
+    </div>
+  </div>
+
+  <div id="draw-container">
+    <!--    <div class="box"></div>-->
+    <!--    <div [@myInsertRemoveTrigger]="{value: 'in', left_indent: num}" *ngFor="let item of nameList" class="draw-item" [class.marked]="item.isMarked">-->
+    <div *ngFor="let item of nameList" class="draw-item" [class.marked]="item.isMarked">
+      {{item.name}}
+    </div>
+  </div>
+  <div id="bottom">
+    <div id="actions">
+      <button (click)="draw()" mat-raised-button color="accent">הגרל שם</button>
+      <button (click)="clearAll()" mat-raised-button color="warn">מחק רשימה</button>
+    </div>
+<!--    <div> מהירות נוכחית {{Math.max(maxInterval - currentInterval, 0)}}</div>-->
+    <div *ngIf="winner" id="winner-box">
+
+      <div id="winner-name">העולה בגורל הוא: {{winner}}</div>
+      <app-confetti id="confetti-container"></app-confetti>
+    </div>
+  </div>
+
+</div>
